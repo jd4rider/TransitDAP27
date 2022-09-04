@@ -8,15 +8,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TransitDAP27 {
-    private static String token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIwMTAwMTEzMDkiLCJpbnRlcm5hbElkIjoiMDEwMDExMzA5IiwidXNlckNsYXNzIjoiUkVHIiwiYXBwTmFtZSI6ImRlZ3JlZXdvcmtzIiwicm9sZXMiOlsiQU5ZU1RVSUQiLCJBVURERVNDUiIsIkFVREZSRUVaIiwiQ09NUE9TRVIiLCJDT05UQUNUIiwiQ09OVEFEVlIiLCJDT05UUk9MIiwiQ1RMQ09ORiIsIkNUTEdST1VQIiwiQ1RMR1JQQUQiLCJDVExHUlBETCIsIkNUTEdSUE1EIiwiQ1RMUFJPUCIsIkNUTFNFVEFEIiwiQ1RMU0VUREwiLCJDVExTRVRNRCIsIkNUTFVDWEFEIiwiQ1RMVUNYQksiLCJDVExVQ1hETCIsIkNUTFVDWE1EIiwiQ1RMVVNFUlMiLCJDVExVU1JBRCIsIkNUTFVTUkRMIiwiQ1RMVVNSTUQiLCJERUJVRyIsIkRPQ0RBU0giLCJFWFBBTExPVyIsIkVYUEFQUExZIiwiRVhQQ0hBTkciLCJFWFBGT1JDRSIsIkVYUFNVQlNUIiwiRVhUTElOS1MiLCJOT1JFRkVSIiwiU0NSQkxBTEwiLCJTQ1JJQkUiLCJTQ1JQQVJTRSIsIlNEQVVEREVMIiwiU0RBVURJVCIsIlNEQVVEUERGIiwiU0RBVURSRVYiLCJTREFVRFJVTiIsIlNERU1FWFNSIiwiU0RFTVBFQUQiLCJTREVNUEVBTCIsIlNERU1QRUFWIiwiU0RFTVBFRlgiLCJTREVNUEVSRCIsIlNERU1QRVJKIiwiU0RFTVBFV0EiLCJTREVYQ0VQVCIsIlNERVhQQUREIiwiU0RFWFBERUwiLCJTREVYUE1HVCIsIlNERklORCIsIlNERklORElEIiwiU0RHUEFBRFYiLCJTREdQQUNMQyIsIlNER1BBR1JEIiwiU0RHUEFUUk0iLCJTREhJU1QiLCJTRExPS0FIRCIsIlNETk9URVMiLCJTRE5URUFERCIsIlNETlRFQ0hHIiwiU0ROVEVERUwiLCJTRE5URU1PRCIsIlNETlRFUlVOIiwiU0ROVEVWVUUiLCJTRFBFVEFERCIsIlNEUEVUREVMIiwiU0RQRVRNT0QiLCJTRFBFVE1ZUyIsIlNEUEVUVkVXIiwiU0RSRUZCVE4iLCJTRFJFRlJFUyIsIlNEU1RVQU5ZIiwiU0RXRUIzMCIsIlNEV0VCMzEiLCJTRFdFQjMyIiwiU0RXRUIzMyIsIlNEV0VCMzQiLCJTRFdFQjM1IiwiU0RXRUIzNiIsIlNEV0VCMzciLCJTRFdFQjUwIiwiU0RXRUI1MSIsIlNEV0VCNTIiLCJTRFdFQjU1IiwiU0RXRUI1NiIsIlNEV0hBVElGIiwiU0RXSUZERUwiLCJTRFdJRkhJUyIsIlNEV09SS1MiLCJTRFhNTDMwIiwiU0RYTUwzMSIsIlNEWE1MMzIiLCJTRFhNTDMzIiwiU0hFTkNSUFQiLCJTUk5TQ1JJQiIsIlNVUFBPUlQiLCJUUkFETUlOIiwiVFJBTkFMTCIsIlRSQU5BUlQiLCJUUkFOREVMIiwiVFJBTlJVTiIsIlRSQU5TSVQiLCJUUkFOU1FMIiwiVFJEQVAyNyIsIldJRkRFU0NSIiwiV0lGRlJFRVoiXSwibmFtZSI6Ik1VRUxMRVIsIEFORFJFQVMgKEFuZHkpIiwiZXhwIjoxNjYyNDExMDQwLCJhbHRJZCI6IjAxNzg5OThBMThDMEMzOEVFMDUwQzAwQTIyMTIzNDA1IiwiaWF0IjoxNjYxODExMTAwLCJqdGkiOiJhNzhmNmZlYS00MmU2LTQyN2YtOWRkMy01OTU4MmE2OWM0ODkifQ.cprAQNt38nOuIYVAIL-xb4akR_7_YQnvai6bOCzEpr8";
+    private static String defaultToken = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIwMTAwMTEzMDkiLCJpbnRlcm5hbElkIjoiMDEwMDExMzA5IiwidXNlckNsYXNzIjoiUkVHIiwiYXBwTmFtZSI6ImRlZ3JlZXdvcmtzIiwicm9sZXMiOlsiQU5ZU1RVSUQiLCJBVURERVNDUiIsIkFVREZSRUVaIiwiQ09NUE9TRVIiLCJDT05UQUNUIiwiQ09OVEFEVlIiLCJDT05UUk9MIiwiQ1RMQ09ORiIsIkNUTEdST1VQIiwiQ1RMR1JQQUQiLCJDVExHUlBETCIsIkNUTEdSUE1EIiwiQ1RMUFJPUCIsIkNUTFNFVEFEIiwiQ1RMU0VUREwiLCJDVExTRVRNRCIsIkNUTFVDWEFEIiwiQ1RMVUNYQksiLCJDVExVQ1hETCIsIkNUTFVDWE1EIiwiQ1RMVVNFUlMiLCJDVExVU1JBRCIsIkNUTFVTUkRMIiwiQ1RMVVNSTUQiLCJERUJVRyIsIkRPQ0RBU0giLCJFWFBBTExPVyIsIkVYUEFQUExZIiwiRVhQQ0hBTkciLCJFWFBGT1JDRSIsIkVYUFNVQlNUIiwiRVhUTElOS1MiLCJOT1JFRkVSIiwiU0NSQkxBTEwiLCJTQ1JJQkUiLCJTQ1JQQVJTRSIsIlNEQVVEREVMIiwiU0RBVURJVCIsIlNEQVVEUERGIiwiU0RBVURSRVYiLCJTREFVRFJVTiIsIlNERU1FWFNSIiwiU0RFTVBFQUQiLCJTREVNUEVBTCIsIlNERU1QRUFWIiwiU0RFTVBFRlgiLCJTREVNUEVSRCIsIlNERU1QRVJKIiwiU0RFTVBFV0EiLCJTREVYQ0VQVCIsIlNERVhQQUREIiwiU0RFWFBERUwiLCJTREVYUE1HVCIsIlNERklORCIsIlNERklORElEIiwiU0RHUEFBRFYiLCJTREdQQUNMQyIsIlNER1BBR1JEIiwiU0RHUEFUUk0iLCJTREhJU1QiLCJTRExPS0FIRCIsIlNETk9URVMiLCJTRE5URUFERCIsIlNETlRFQ0hHIiwiU0ROVEVERUwiLCJTRE5URU1PRCIsIlNETlRFUlVOIiwiU0ROVEVWVUUiLCJTRFBFVEFERCIsIlNEUEVUREVMIiwiU0RQRVRNT0QiLCJTRFBFVE1ZUyIsIlNEUEVUVkVXIiwiU0RSRUZCVE4iLCJTRFJFRlJFUyIsIlNEU1RVQU5ZIiwiU0RXRUIzMCIsIlNEV0VCMzEiLCJTRFdFQjMyIiwiU0RXRUIzMyIsIlNEV0VCMzQiLCJTRFdFQjM1IiwiU0RXRUIzNiIsIlNEV0VCMzciLCJTRFdFQjUwIiwiU0RXRUI1MSIsIlNEV0VCNTIiLCJTRFdFQjU1IiwiU0RXRUI1NiIsIlNEV0hBVElGIiwiU0RXSUZERUwiLCJTRFdJRkhJUyIsIlNEV09SS1MiLCJTRFhNTDMwIiwiU0RYTUwzMSIsIlNEWE1MMzIiLCJTRFhNTDMzIiwiU0hFTkNSUFQiLCJTUk5TQ1JJQiIsIlNVUFBPUlQiLCJUUkFETUlOIiwiVFJBTkFMTCIsIlRSQU5BUlQiLCJUUkFOREVMIiwiVFJBTlJVTiIsIlRSQU5TSVQiLCJUUkFOU1FMIiwiVFJEQVAyNyIsIldJRkRFU0NSIiwiV0lGRlJFRVoiXSwibmFtZSI6Ik1VRUxMRVIsIEFORFJFQVMgKEFuZHkpIiwiZXhwIjoxNjYyNDExMDQwLCJhbHRJZCI6IjAxNzg5OThBMThDMEMzOEVFMDUwQzAwQTIyMTIzNDA1IiwiaWF0IjoxNjYxODExMTAwLCJqdGkiOiJhNzhmNmZlYS00MmU2LTQyN2YtOWRkMy01OTU4MmE2OWM0ODkifQ.cprAQNt38nOuIYVAIL-xb4akR_7_YQnvai6bOCzEpr8";
 
     //Input/Output Variables with Getters and Setters
+    private String token;
     private String output = "";
     public String getOutPut() { return output; }
     public void setOutPut(String a) {  this.output = a;   }
 
     private String joboutput = "";
-    public String getJobOutPut() {  return output;   }
+    public String getJobOutPut() {  return joboutput;   }
     public void setJobOutPut(String a) {   this.joboutput = a;   }
 
     //Local variables for running job that are set in the Constructor
@@ -24,15 +25,21 @@ public class TransitDAP27 {
     private String l_freezeType;
     private String l_reportType;
 
+    private String l_transitUsername = "blablabla";
+    private String l_transitPin = "blebleble";
+
+
 
     //Constructor
-    public void TransitDAP27 (String c_catalogYear, String c_freezeType, String c_reportType) {
-        this.l_catalogYear = c_catalogYear;
-        this.l_freezeType = c_freezeType;
-        this.l_reportType = c_reportType;
-    }
+//    public TransitDAP27 (String c_catalogYear, String c_freezeType, String c_reportType) {
+//        this.l_catalogYear = c_catalogYear;
+//        this.l_freezeType = c_freezeType;
+//        this.l_reportType = c_reportType;
+//    }
 
     public void test() {
+        getTransitToken();
+
         HttpClient client = HttpClient.newBuilder()
                 .version(HttpClient.Version.HTTP_2)
                 .followRedirects(HttpClient.Redirect.NORMAL)
@@ -168,6 +175,25 @@ public class TransitDAP27 {
 
     };
 
+    private void getTransitToken () {
+        String requestBody = "{\"username\" : \""+l_transitUsername+"\", \"password\" : \""+l_transitPin+"\"}";
+
+        HttpClient client = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create("https://dwtest.cnm.edu/TransitUI/api/stateless-token"))
+                .POST(HttpRequest.BodyPublishers.ofString(requestBody))
+                .headers("Content-Type", "application/json")
+                .headers("Referer", "https://dwtest.cnm.edu/TransitUI")
+                .build();
+        client.sendAsync(request, HttpResponse.BodyHandlers.ofString())
+                .thenApply(HttpResponse::body)
+                .thenAccept((res) -> {
+                    if(res == null || res.isEmpty() || res == " " || res == "") this.token = defaultToken;
+                    else this.token = res;
+                })
+                .join();
+    }
+
 
     public void testPostDap27() {
 
@@ -179,6 +205,10 @@ public class TransitDAP27 {
         String requestBody = buildRequest(model, "2020", "AASGEN", "XML");
 
         System.out.println(requestBody);
+
+        getTransitToken();
+
+        System.out.println(token);
 
 
         HttpClient client = HttpClient.newHttpClient();
