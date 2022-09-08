@@ -8,8 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TransitDAP27 {
-    private static String defaultToken = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIwMTAwMTEzMDkiLCJpbnRlcm5hbElkIjoiMDEwMDExMzA5IiwidXNlckNsYXNzIjoiUkVHIiwiYXBwTmFtZSI6ImRlZ3JlZXdvcmtzIiwicm9sZXMiOlsiQU5ZU1RVSUQiLCJBVURERVNDUiIsIkFVREZSRUVaIiwiQ09NUE9TRVIiLCJDT05UQUNUIiwiQ09OVEFEVlIiLCJDT05UUk9MIiwiQ1RMQ09ORiIsIkNUTEdST1VQIiwiQ1RMR1JQQUQiLCJDVExHUlBETCIsIkNUTEdSUE1EIiwiQ1RMUFJPUCIsIkNUTFNFVEFEIiwiQ1RMU0VUREwiLCJDVExTRVRNRCIsIkNUTFVDWEFEIiwiQ1RMVUNYQksiLCJDVExVQ1hETCIsIkNUTFVDWE1EIiwiQ1RMVVNFUlMiLCJDVExVU1JBRCIsIkNUTFVTUkRMIiwiQ1RMVVNSTUQiLCJERUJVRyIsIkRPQ0RBU0giLCJFWFBBTExPVyIsIkVYUEFQUExZIiwiRVhQQ0hBTkciLCJFWFBGT1JDRSIsIkVYUFNVQlNUIiwiRVhUTElOS1MiLCJOT1JFRkVSIiwiU0NSQkxBTEwiLCJTQ1JJQkUiLCJTQ1JQQVJTRSIsIlNEQVVEREVMIiwiU0RBVURJVCIsIlNEQVVEUERGIiwiU0RBVURSRVYiLCJTREFVRFJVTiIsIlNERU1FWFNSIiwiU0RFTVBFQUQiLCJTREVNUEVBTCIsIlNERU1QRUFWIiwiU0RFTVBFRlgiLCJTREVNUEVSRCIsIlNERU1QRVJKIiwiU0RFTVBFV0EiLCJTREVYQ0VQVCIsIlNERVhQQUREIiwiU0RFWFBERUwiLCJTREVYUE1HVCIsIlNERklORCIsIlNERklORElEIiwiU0RHUEFBRFYiLCJTREdQQUNMQyIsIlNER1BBR1JEIiwiU0RHUEFUUk0iLCJTREhJU1QiLCJTRExPS0FIRCIsIlNETk9URVMiLCJTRE5URUFERCIsIlNETlRFQ0hHIiwiU0ROVEVERUwiLCJTRE5URU1PRCIsIlNETlRFUlVOIiwiU0ROVEVWVUUiLCJTRFBFVEFERCIsIlNEUEVUREVMIiwiU0RQRVRNT0QiLCJTRFBFVE1ZUyIsIlNEUEVUVkVXIiwiU0RSRUZCVE4iLCJTRFJFRlJFUyIsIlNEU1RVQU5ZIiwiU0RXRUIzMCIsIlNEV0VCMzEiLCJTRFdFQjMyIiwiU0RXRUIzMyIsIlNEV0VCMzQiLCJTRFdFQjM1IiwiU0RXRUIzNiIsIlNEV0VCMzciLCJTRFdFQjUwIiwiU0RXRUI1MSIsIlNEV0VCNTIiLCJTRFdFQjU1IiwiU0RXRUI1NiIsIlNEV0hBVElGIiwiU0RXSUZERUwiLCJTRFdJRkhJUyIsIlNEV09SS1MiLCJTRFhNTDMwIiwiU0RYTUwzMSIsIlNEWE1MMzIiLCJTRFhNTDMzIiwiU0hFTkNSUFQiLCJTUk5TQ1JJQiIsIlNVUFBPUlQiLCJUUkFETUlOIiwiVFJBTkFMTCIsIlRSQU5BUlQiLCJUUkFOREVMIiwiVFJBTlJVTiIsIlRSQU5TSVQiLCJUUkFOU1FMIiwiVFJEQVAyNyIsIldJRkRFU0NSIiwiV0lGRlJFRVoiXSwibmFtZSI6Ik1VRUxMRVIsIEFORFJFQVMgKEFuZHkpIiwiZXhwIjoxNjYyNDExMDQwLCJhbHRJZCI6IjAxNzg5OThBMThDMEMzOEVFMDUwQzAwQTIyMTIzNDA1IiwiaWF0IjoxNjYxODExMTAwLCJqdGkiOiJhNzhmNmZlYS00MmU2LTQyN2YtOWRkMy01OTU4MmE2OWM0ODkifQ.cprAQNt38nOuIYVAIL-xb4akR_7_YQnvai6bOCzEpr8";
-
     //Input/Output Variables with Getters and Setters
     private String token;
     private String output = "";
@@ -25,8 +23,8 @@ public class TransitDAP27 {
     private String l_freezeType;
     private String l_reportType;
 
-    private String l_transitUsername = "blablabla";
-    private String l_transitPin = "blebleble";
+    private String l_transitUsername = System.getenv("username");
+    private String l_transitPin = System.getenv("pin");
 
 
 
@@ -47,7 +45,7 @@ public class TransitDAP27 {
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create("https://dwtest.cnm.edu/TransitUI/api/transit/specifications/dap27"))
                 .headers("Content-Type", "application/json")
-                .headers("Authorization", "Bearer " + token)
+                .headers("Authorization", token)
                 .build();
         client.sendAsync(request, HttpResponse.BodyHandlers.ofString())
                 .thenApply(HttpResponse::body)
@@ -188,8 +186,8 @@ public class TransitDAP27 {
         client.sendAsync(request, HttpResponse.BodyHandlers.ofString())
                 .thenApply(HttpResponse::body)
                 .thenAccept((res) -> {
-                    if(res == null || res.isEmpty() || res == " " || res == "") this.token = defaultToken;
-                    else this.token = res;
+                    if(res == null || res.isEmpty() || res == " " || res == "") System.out.println("Username or Password is incorrect");
+                    else this.token = res.split(":")[1].replaceAll("^\"|\"$", "").replaceAll("}$", "");
                 })
                 .join();
     }
@@ -216,7 +214,7 @@ public class TransitDAP27 {
                 .uri(URI.create("https://dwtest.cnm.edu/TransitUI/api/transit/instances"))
                 .POST(HttpRequest.BodyPublishers.ofString(requestBody))
                 .headers("Content-Type", "application/json")
-                .headers("Authorization", "Bearer " + token)
+                .headers("Authorization", token)
                 .build();
         client.sendAsync(request, HttpResponse.BodyHandlers.ofString())
                 .thenApply(HttpResponse::body)

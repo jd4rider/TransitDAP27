@@ -20,9 +20,9 @@ public class Main {
         //Main main = new Main();
         TransitDAP27 transitDap27 = new TransitDAP27();
         transitDap27.test();
-        transitDap27.testPostDap27();
+        //transitDap27.testPostDap27();
         System.out.println(transitDap27.getOutPut());
-        System.out.println(transitDap27.getJobOutPut());
+        //System.out.println(transitDap27.getJobOutPut());
 
     }
 
